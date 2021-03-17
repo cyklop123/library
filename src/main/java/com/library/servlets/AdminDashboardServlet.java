@@ -34,12 +34,13 @@ public class AdminDashboardServlet extends HttpServlet {
         writer.println("<form method='POST'>");
         writer.println("<input type='hidden' name='action' value='delete'><br>");
         writer.println("Enter deleted book title <input type='text' name='title'><br>");
-        writer.println("<button>Add</button>");
+        writer.println("<button>Delete</button>");
         writer.println("</form>");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         ServletContext context = request.getServletContext();
         List<Book> books = (ArrayList<Book>) context.getAttribute("books");
         String action = request.getParameter("action");
@@ -50,7 +51,6 @@ public class AdminDashboardServlet extends HttpServlet {
             String year = (request.getParameter("year") != null) ? request.getParameter("year"):"";
             if(!title.equals("") && !author.equals("") && !year.equals("")) {
                 Book book = new Book(title, author, Integer.parseInt(year));
-                System.out.println(books);
                 books.add(book);
             }
         }
