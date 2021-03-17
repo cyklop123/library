@@ -27,16 +27,16 @@ public class UserLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
-        RequestDispatcher dispatcher;
         if(checkUser(login, pass))
         {
             ServletContext context = request.getServletContext();
             context.setAttribute("user", new User(login, pass));
-            dispatcher = request.getRequestDispatcher("dashboard");
+            response.sendRedirect("dashboard");
         }
-        else
-            dispatcher = request.getRequestDispatcher("loginFailed.html");
-        dispatcher.forward(request, response);
+        else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("loginFailed.html");
+            dispatcher.forward(request, response);
+        }
     }
 
     protected boolean checkUser(String login, String pass)

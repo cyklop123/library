@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "UserLoginFilter",
-urlPatterns = {"/dashboard"})
+@WebFilter(filterName = "UserLoginFilter")
 public class UserLoginFilter implements Filter {
 
     @Override
@@ -21,13 +20,15 @@ public class UserLoginFilter implements Filter {
         {
             if(user.getRole().equals(Role.ADMIN))
             {
-                ((HttpServletResponse)servletResponse).sendRedirect("adminDashboard");
+                RequestDispatcher dispatcher = servletRequest.getRequestDispatcher("adminDashboard");
+                dispatcher.forward(servletRequest, servletResponse);
             }
+            else
+                filterChain.doFilter(servletRequest,servletResponse);
         }
         else
         {
             ((HttpServletResponse)servletResponse).sendRedirect("login.html");
         }
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 }

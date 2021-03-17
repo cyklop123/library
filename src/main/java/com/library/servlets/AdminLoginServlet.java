@@ -13,16 +13,16 @@ public class AdminLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher;
         if("admin".equals(request.getParameter("login"))
                 && "admin".equals(request.getParameter("pass")))
         {
             ServletContext context = request.getServletContext();
             context.setAttribute("user", new User("admin", "admin", Role.ADMIN));
-            dispatcher = request.getRequestDispatcher("adminDashboard");
+            response.sendRedirect("adminDashboard");
         }
-        else
-            dispatcher = request.getRequestDispatcher("loginFailed.html");
-        dispatcher.forward(request, response);
+        else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("loginFailed.html");
+            dispatcher.forward(request, response);
+        }
     }
 }

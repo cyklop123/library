@@ -13,12 +13,11 @@ public class LibraryContextServletListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        List<Book> books = List.of(
-                new Book("Eleonora Kalkowska","Głód życia",1904),
-                new Book("Zofia Urbanowska", "Księżniczka",1886),
-                new Book("Eliza Orzeszkowa", "Dobra pani", 1888),
-                new Book("Gabriela Zapolska", "Kaśka Kariatyda", 1895)
-        );
+        List<Book> books = new ArrayList<Book>();
+        books.add(new Book("Eleonora Kalkowska","Głód życia",1904));
+        books.add(new Book("Zofia Urbanowska", "Księżniczka",1886));
+        books.add(new Book("Eliza Orzeszkowa", "Dobra pani", 1888));
+        books.add(new Book("Gabriela Zapolska", "Kaśka Kariatyda", 1895));
         sce.getServletContext().setAttribute("books", books);
     }
 }
