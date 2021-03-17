@@ -13,6 +13,18 @@ public class User {
         this.role = role;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
     @Override
     public String toString() {
         return "User{" +

@@ -17,4 +17,10 @@ public class LoginServlet extends HttpServlet {
             dispatcher = request.getRequestDispatcher("UserLoginServlet");
         dispatcher.forward(request, response);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WelcomeServlet");
+        dispatcher.forward(req, resp);
+    }
 }

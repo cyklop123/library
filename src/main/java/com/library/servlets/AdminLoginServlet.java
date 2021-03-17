@@ -19,7 +19,7 @@ public class AdminLoginServlet extends HttpServlet {
         {
             ServletContext context = request.getServletContext();
             context.setAttribute("user", new User("admin", "admin", Role.ADMIN));
-            dispatcher = request.getRequestDispatcher("dashboard");
+            dispatcher = request.getRequestDispatcher("adminDashboard");
         }
         else
             dispatcher = request.getRequestDispatcher("loginFailed.html");

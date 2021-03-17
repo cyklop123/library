@@ -12,12 +12,9 @@ public class WelcomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = request.getServletContext();
-        RequestDispatcher dispatcher;
-        System.out.println(context.getAttribute("user"));
         if(context.getAttribute("user") != null)
-            dispatcher = request.getRequestDispatcher("dashboard");
+            response.sendRedirect("dashboard");
         else
-            dispatcher = request.getRequestDispatcher("login.html");
-        dispatcher.forward(request, response);
+            response.sendRedirect("login.html");
     }
 }
